@@ -1,0 +1,187 @@
+<div ng-controller='controller_sponsor_upload_logo'>
+	<meta charset="utf-8" />
+	<title>GKS-UPLOAD LOGO</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link rel="icon" type="image/gif/png" href="/lib/assets/img/logo_logo.png">
+	
+	<link href="../client/lib/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/css/style.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link href="../client/lib/assets/css/custom_style.css" rel="stylesheet"/>
+	<link href="../client/lib/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+	<link href="../client/lib/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+	<link href="../client/lib/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+	<script src="../client/lib/assets/plugins/pace/pace.min.js"></script>
+	<link href="../client/lib/assets/css/style.css" rel="stylesheet" />
+	<link href="../client/lib/assets/fileupload/css/fileinput.css" rel="stylesheet" />
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+	<div id="header" class="header navbar navbar-default navbar-fixed-top">
+		<div ng-include="'client/panels/common_things/fixed_header/fixed_header.ng.html'"></div>
+	</div>
+	<div ng-include="'client/panels/common_things/fixed_sponsor_sidebar/fixed_sponsor_sidebar.html'"></div>
+	<div id="content" class="content">
+	<ol class="breadcrumb pull-right">
+		<li><a href="dashboard.html">Home</a></li>
+		<li class="active">Upload Logo</li>
+	</ol>
+	<h1 class="page-header custom_color">
+		Upload Logo
+	</h1>
+	<hr />
+	<div class="panel panel-inverse" data-sortable-id="form-validation-2">
+		<div class="panel-body panel-form">
+			<form class="form-horizontal form-bordered" name="userForm"  role="form" name='form' method="post" novalidate >
+				<div class="form-group">
+					<label 
+						class="control-label col-md-4 col-sm-4" 
+						for="VIdeoTitle"
+					>Logo Title* :
+					</label>
+					<div class="col-md-6 col-sm-6">
+						<input 
+							class="form-control" 
+							type="text" 
+							id="VIdeoTitle"
+							name="VIdeoTitle" 
+							ng-model="user.logo_title"
+							data-type="alphanum" 
+							placeholder="Logo title" 
+							autofocus required
+						>
+					</div>
+				</div>
+				<div class="form-group">
+					<label 
+						class="control-label col-md-4 col-sm-4" 
+						for="Tags"
+					>Upload Logo* :</label>
+					<div class="col-md-6 col-sm-6">
+						<input 
+							id="file-4" 
+							type="file"
+							name="logo_file" 
+							class="file"
+							custom-on-change="onVideoFileChosen"
+							ngf-select 
+							ngf-pattern="'image/*'"
+							accept="image/*" 
+						> 
+						<br />
+						<progress 
+							id="pro" 
+							value="0" 
+							ng-model="prog" 
+							max="100"
+						>
+						</progress>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label 
+						class="control-label col-md-4 col-sm-4"
+					>
+					</label>
+					<div class="col-md-6 col-sm-6">
+						<a>
+							<button 
+								type="button"
+								class="btn btn-primary" 
+								ng-click="StartUpload()"
+							>Add
+							</button>
+						</a> 
+						<a 
+							class="btn btn-danger"
+							onclick=""
+						>Cancel
+						</a>
+						<div 
+							ng-show="error" 
+							class="alert alert-danger"
+						>{{error}}
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+	</div>
+	<script src="client/panels/company_pages/sponsor_upload_logo/socket.io.js"></script>
+	<script src="../client/lib/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	
+	<script src="../client/lib/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="../client/lib/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../client/lib/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../client/lib/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<script src="../client/lib/assets/plugins/parsley/dist/parsley.js"></script>
+	<script src="../client/lib/assets/js/apps.min.js"></script>
+	<script src="../client/lib/assets/fileupload/js/fileinput.js"></script>
+	<script>
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+	<script>
+    $('#file-fr').fileinput({
+        language: 'fr',
+        uploadUrl: '#',
+        allowedFileExtensions : ['jpg', 'png','gif','mp4','wmv'],
+    });
+    $('#file-es').fileinput({
+        language: 'es',
+        uploadUrl: '#',
+        allowedFileExtensions : ['jpg', 'png','gif','mp4','wmv'],
+    });
+    $("#file-0").fileinput({
+        allowedFileExtensions : ['jpg', 'png','gif','mp4','wmv'],
+    });
+    $("#file-1").fileinput({
+        uploadUrl: '', // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['jpg', 'png','gif','mp4','wmv'],
+        overwriteInitial: false,
+        maxFileSize: 1000,
+        maxFilesNum: 10,
+        //allowedFileTypes: ['image', 'video', 'flash'],
+        slugCallback: function(filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+	});
+	$("#file-3").fileinput({
+		showUpload: false,
+		showCaption: false,
+		browseClass: "btn btn-primary btn-lg",
+		fileType: "any",
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>"
+	});
+	$("#file-4").fileinput({
+		uploadExtraData: {kvId: '10'}
+	});
+    $(".btn-warning").on('click', function() {
+        if ($('#file-4').attr('disabled')) {
+            $('#file-4').fileinput('enable');
+        } else {
+            $('#file-4').fileinput('disable');
+        }
+    });    
+    $(".btn-info").on('click', function() {
+        $('#file-4').fileinput('refresh', {previewClass:'bg-info'});
+        alert('hi');
+    });
+    $(document).ready(function() {
+        $("#test-upload").fileinput({
+            'showPreview' : false,
+            allowedFileExtensions : ['jpg', 'png','gif','mp4','wmv'],
+            'elErrorContainer': '#errorBlock'
+        });
+   });
+	</script>
+</div>

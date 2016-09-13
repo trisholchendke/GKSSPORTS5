@@ -1,0 +1,16 @@
+module.exports={
+	'/api/users':require('../routes/routes_user.js'),
+	'/api/users/:id':require('../routes/routes_user.js'),
+	'/api/sponsorlogin':require('../routes/routes_sponsor_login.js'),
+	'/api/sponsoruploadedlogo':require('../routes/routes_sponsor_uploaded_logo.js'),
+	'/api/sponsoruploadedlogo/:id':require('../routes/routes_sponsor_uploaded_logo.js'),
+	'/api/sponsoruploadedadvertisement':require('../routes/routes_sponsor_uploaded_advertisement.js'),
+	'/api/sponsoruploadedadvertisement/:id':require('../routes/routes_sponsor_uploaded_advertisement.js'),
+	'/api/sponsoruploadeddocument':require('../routes/routes_sponsor_uploaded_document.js'),
+	'/api/sponsoruploadeddocument/:id':require('../routes/routes_sponsor_uploaded_document.js'),
+	'/api/sponsordashboard':require('../routes/routes_sponsor_dashboard.js'),
+	'/api/sponsordashboard/:coming_object':require('../routes/routes_sponsor_dashboard.js'),
+	'/api/tagcenterlogin':require('../routes/routes_tag_center_login.js'),
+	'/api/tagcenterdashboard':require('../routes/routes_tag_center_dashboard.js'),
+	'/api/onsitelogin':require('../routes/routes_onsite_login.js'),
+}

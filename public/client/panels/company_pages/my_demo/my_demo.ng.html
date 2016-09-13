@@ -1,0 +1,55 @@
+<div ng-controller="controller_my_demo">
+	<div class="row">
+	<div class="col-sm-4">
+		<input 
+			type="text" 
+			ng-model="user.user_name"
+			placeholder="Enter Username"
+			class="form-control"
+		>
+	</div>
+	<div class="col-sm-4">
+		<input 
+			type="password" 
+			ng-model="user.password"
+			placeholder="Enter Password"
+			class="form-control"
+		>
+	</div>
+	<div class="col-sm-4">
+		<button 
+			ng-click="submit_user(user)"
+			class="btn btn-primary"
+		>Submit
+		</button>
+		<button 
+			ng-click="update_user(user._id)"
+			class="btn btn-primary"
+		>Update
+		</button>
+	</div>
+		
+	</div>
+	
+	<br>
+	<br>
+	<table class="table table-bordered">
+		<tr>
+			<th>Sr No:</th>
+			<th>User Name</th>
+			<th>Password</th>
+			<th>Mongo Id</th>
+		</tr>
+		<tr ng-repeat="each_user in users">
+			<td>{{$index+1}}</td>
+			<td>{{each_user.user_name}}</td>
+			<td>{{each_user.password}}</td>
+			<td>{{each_user._id}}</td>
+			<td>
+				<button ng-click="delete_user(each_user._id)">Delete</button>
+				<button ng-click="edit_user(each_user._id)">Edit</button>
+			</td>
+		</tr>
+	</table>
+	<pre>{{users | json}}</pre>
+</div>

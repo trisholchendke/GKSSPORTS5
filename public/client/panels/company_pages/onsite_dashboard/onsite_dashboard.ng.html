@@ -1,0 +1,117 @@
+<div ng-controller="controller_onsite_dashboard">
+	<link rel="icon" type="image/gif/png" href="lib/assets/img/logo_logo.png">
+	<link href="../client/lib/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/css/style.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link href="../client/lib/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link href="../client/lib/assets/css/custom_style.css" rel="stylesheet"/>
+	
+	<link href="../client/lib/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+	<link href="../client/lib/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+	<link href="../client/lib/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+<!--    <link href="../client/lib/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />-->
+	
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<div id="header" class="header navbar navbar-default navbar-fixed-top">
+			<div ng-include="'client/panels/common_things/fixed_header/fixed_header.ng.html'"></div>
+		</div>
+		<div ng-include="'client/panels/common_things/fixed_onsite_user_sidebar/fixed_onsite_user_sidebar.ng.html'"></div>
+		<div id="content" class="content"  ng-init="onGetRecentUploadVideo()">
+		<ol class="breadcrumb pull-right">
+			<li><a href="/dashboard">Home</a></li>
+			<li class="active">Dashboard</li>
+		</ol>
+		<h1 class="page-header custom_color">
+			Dashboard
+			<!-- <small>header small text goes here...</small> -->
+		</h1>
+		<hr />
+		<div class="row">
+			<div class="col-md-3 col-sm-3">
+				<div class="widget widget-stats bg-purple">
+					<div class="stats-icon">
+						<i class="fa fa-video-camera"></i>
+					</div>
+					<div class="stats-info">
+						<h4>TOTAL VIDEOS UPLOADED</h4>
+						<p ng-model="totalUploadCount">{{totalUploadCount}}</p>
+					</div>
+					<div class="stats-link">
+						<a href="uploaded_video_View_details.html">View Detail <i
+							class="fa fa-arrow-circle-o-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<hr />
+	<div class="panel panel-inverse clearfix"
+		data-sortable-id="table-basic-5">
+		<div class="panel-heading">
+			<div class="panel-heading-btn">
+				<a href="javascript:;"
+					class="btn btn-xs btn-icon btn-circle btn-default"
+					data-click="panel-expand"><i class="fa fa-expand"></i></a>
+
+			</div>
+			<h4 class="panel-title">Recently Added Videos</h4>
+		</div>
+		<div class="row">
+			<div id="gallery1" class="gallery" ng-repeat="user in userVideo | orderBy:'onsite_datetime':true">
+				<div class="image gallery-group-1 pull-left">
+					<div class="image-inner">
+						<a data-lightbox="gallery-group-1"> <video width="200"
+								height="195" controls ng-model="user.onsite_video">
+								<source src="{{user.onsite_video}}">
+
+							</video>
+						</a>
+					</div>
+					<div class="image-info">
+						<h5 class="title" ng-model="user.onsite_title">{{user.onsite_title}}</h5>
+						
+							<h5 class="title inline">
+								<a href="{{user.onsite_video}}" download
+									class="text-center right_icon"><i
+									class="fa fa-download custom_icon" data-toggle="tooltip"
+									title="Download  Video" aria-hidden="true"></i></a>
+							</h5>
+							<div class="desc" ng-model="user.onsite_desciption">{{user.onsite_desciption}}</div>
+							
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	
+	<script src="../client/lib/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../client/lib/assets/plugins/pace/pace.min.js"></script>
+	<script src="../client/lib/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="../client/lib/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="../client/lib/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../client/lib/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../client/lib/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<script src="../client/lib/assets/plugins/flot/jquery.flot.min.js"></script>
+	<script src="../client/lib/assets/plugins/flot/jquery.flot.time.min.js"></script>
+	<script src="../client/lib/assets/plugins/flot/jquery.flot.resize.min.js"></script>
+	<script src="../client/lib/assets/plugins/flot/jquery.flot.pie.min.js"></script>
+	<script src="../client/lib/assets/plugins/sparkline/jquery.sparkline.js"></script>
+	<script src="../client/lib/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="../client/lib/assets/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="../client/lib/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="../client/lib/assets/js/dashboard.min.js"></script>
+	<script src="../client/lib/assets/js/apps.min.js"></script>
+	
+	<script>
+		$(document).ready(function() {
+			App.init();
+			Dashboard.init();
+		});
+	</script>
+</div>

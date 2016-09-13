@@ -1,0 +1,5 @@
+{
+    "connectionString": "mongodb://localhost:27017/GSKDB",
+    "apiUrl":  "http://localhost:3000/api",
+    "secret": "adsl;sdflrrp534534-543;adsfsadlfsad;fl"
+}
